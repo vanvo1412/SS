@@ -1,0 +1,66 @@
+﻿@model SSApp.Models.Alteration
+
+@{
+    ViewData["Title"] = "Edit";
+    var typeList = new List<DropdownItem>
+    {
+        new DropdownItem { Id = 0, Description = "Sleeve"},
+        new DropdownItem { Id = 1, Description = "Trouser"}
+    };
+    var statusList = new List<DropdownItem>
+    {
+        new DropdownItem { Id = 0, Description = "Created"},
+        new DropdownItem { Id = 1, Description = "Paid"},
+        new DropdownItem { Id = 2, Description = "Done"}
+    };
+}
+
+<h1>Edit</h1>
+
+<h4>Alteration</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control"
+                        asp-items="@(new SelectList(statusList, "Id", "Description"))">
+                    <option>Please select one</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <select asp-for="Type" class="form-control"
+                        asp-items="@(new SelectList(typeList, "Id", "Description"))">
+                    <option>Please select one</option>
+                </select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeftLength" class="control-label"></label>
+                <input asp-for="LeftLength" class="form-control" />
+                <span asp-validation-for="LeftLength" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RightLength" class="control-label"></label>
+                <input asp-for="RightLength" class="form-control" />
+                <span asp-validation-for="RightLength" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

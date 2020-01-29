@@ -1,0 +1,13 @@
+﻿@model SSApp.ViewModels.AlterationFormViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    @if(Model != null)
+    {
+        <p>@Json.Serialize(Model)</p>
+    }
+</div>
